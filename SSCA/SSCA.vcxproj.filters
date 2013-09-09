@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CAFilter">
+      <UniqueIdentifier>{245a7d33-3b1c-4135-872e-0c517ed694fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CAST">
+      <UniqueIdentifier>{5b24ebbc-8cd0-4ad5-8619-0a498f97d648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CANLC">
+      <UniqueIdentifier>{03f02c8e-db57-4979-b4dc-1aa4ec8b5651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CC">
+      <UniqueIdentifier>{81e2353c-9132-4f82-81b1-f79466ff4ad8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SSCA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CAMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GetMehod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\NLCCA.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CC\GrdCC.h">
+      <Filter>CC</Filter>
+    </ClInclude>
+    <ClInclude Include="CAFilter\GFCA.h">
+      <Filter>CAFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="CAFilter\GuidedFilter.h">
+      <Filter>CAFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\qx_basic.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\qx_mst_kruskals_image.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\qx_nonlocal_cost_aggregation.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\qx_tree_filter.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CANLC\ctmf.h">
+      <Filter>CANLC</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\STCA.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\ctmf.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\disjoint-set.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\segment-graph.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\SegmentTree.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\StereoDisparity.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\StereoHelper.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST\Toolkit.h">
+      <Filter>CAST</Filter>
+    </ClInclude>
+    <ClInclude Include="CAFilter\BilateralFilter.h">
+      <Filter>CAFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="CAFilter\BFCA.h">
+      <Filter>CAFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="CAFilter\BoxCA.h">
+      <Filter>CAFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="CC\CenCC.h">
+      <Filter>CC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SSCA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\NLCCA.cpp">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CC\GrdCC.cpp">
+      <Filter>CC</Filter>
+    </ClCompile>
+    <ClCompile Include="CAFilter\GFCA.cpp">
+      <Filter>CAFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="CAFilter\GuidedFilter.cpp">
+      <Filter>CAFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\qx_basic.cpp">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\qx_mst_kruskals_image.cpp">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\qx_nonlocal_cost_aggregation.cpp">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\qx_tree_filter.cpp">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CANLC\ctmf.c">
+      <Filter>CANLC</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\STCA.cpp">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\ctmf.c">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\SegmentTree.cpp">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\StereoDisparity.cpp">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\StereoHelper.cpp">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST\Toolkit.cpp">
+      <Filter>CAST</Filter>
+    </ClCompile>
+    <ClCompile Include="CAFilter\BilateralFilter.cpp">
+      <Filter>CAFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="CAFilter\BFCA.cpp">
+      <Filter>CAFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="CAFilter\BoxCA.cpp">
+      <Filter>CAFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="CC\CenCC.cpp">
+      <Filter>CC</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
