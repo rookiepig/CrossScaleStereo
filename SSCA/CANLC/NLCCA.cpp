@@ -41,10 +41,10 @@ void NLCCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 	// copy image data
 	m_nlca.m_left = left;
 	m_nlca.m_right = right;
+#ifdef RE_COMPUTE_COST
 	// recompute cost volume
-	// m_nlca.matching_cost_from_color_and_gradient( left, right );
-	// build tree
-	m_nlca.m_tf.build_tree(left[0][0]);
+	 m_nlca.matching_cost_from_color_and_gradient( left, right );
+#else
 	//// my cost volume -> nlca
 	//// be careful yours [1,maxDis-1]
 	//// nlca [0,maxDis-1]
@@ -58,6 +58,10 @@ void NLCCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 			}
 		}
 	}
+#endif
+	// build tree
+	m_nlca.m_tf.build_tree(left[0][0]);
+
 	// filter cost volume
 	m_nlca.m_tf.filter( m_nlca.m_cost_vol[0][0],
 		m_nlca.m_cost_vol_temp[0][0],

@@ -3,6 +3,11 @@
 #include "..\CAMethod.h"
 
 //
+// Re compute cost using NLC's implementation
+//
+#define RE_COMPUTE_COST
+
+//
 // Non-local Cost Aggregatation
 //
 class NLCCA :

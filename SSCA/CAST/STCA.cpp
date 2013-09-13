@@ -13,6 +13,7 @@ void STCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* cos
 
 	int hei = lImg.rows;
 	int wid = lImg.cols;
+	float* pCV = NULL;
 	// image format must convert
 	Mat lSgImg, rSgImg;
 	lImg.convertTo( lSgImg, CV_8U, 255 );
@@ -24,13 +25,15 @@ void STCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* cos
 	// init segmentation tree cost volume
 	sgLCost = Mat::zeros(1, hei * wid * maxDis, CV_32F);
 	CV_Assert(lSgImg.type() == CV_8UC3 && rSgImg.type() == CV_8UC3);
+#ifdef RE_COMPUTE_COST
 	// recompute cost volume
-	//sgLCost = 
-	//	dispHelper.GetMatchingCost( lSgImg, rSgImg, maxDis );
+	sgLCost = 
+		dispHelper.GetMatchingCost( lSgImg, rSgImg, maxDis );
+#else
 	// my cost to st
 	// !!! mine start from 1
 	// just used for cencus cost
-	float* pCV = ( float* )sgLCost.data;
+	pCV = ( float* )sgLCost.data;
 	for( int y = 0; y < hei; y ++ ) {
 		for( int x = 0; x < wid; x ++ ) {
 			for( int d = 0; d < maxDis; d ++ ) {
@@ -40,7 +43,7 @@ void STCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* cos
 			}
 		}
 	}
-
+#endif
 	// build tree
 	CSegmentTree stree;
 	CColorWeight cWeight( lSgImg );

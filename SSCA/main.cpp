@@ -11,12 +11,13 @@
 #include "CAFilter/GFCA.h"
 #include "GetMehod.h"
 
-// #define USE_PYRAMID
+#define USE_PYRAMID
 
 #ifdef USE_PYRAMID
 int main( int argc, char** argv )
 {
 	printf( "Scale Space Cost Aggregation\n" );
+	printf( "Alpha: %.2f\n", COST_ALPHA );
 	if( argc != 9 ) {
 		printf( "Usage: [CC_METHOD] [CA_METHOD] [PP_METHOD] [lImg] [rImg] [lDis] [maxDis] [disSc]\n" );
 		printf( "\nPress any key to continue...\n" );
@@ -120,7 +121,7 @@ int main( int argc, char** argv )
 	// Load left right image
 	//
 	printf( "\n--------------------------------------------------------\n" );
-	printf( "Load Image: (%s) (%s)\n", argv[ 1 ], argv[ 2 ] );
+	printf( "Load Image: (%s) (%s)\n", argv[ 4 ], argv[ 5 ] );
 	printf( "--------------------------------------------------------\n" );
 	Mat lImg = imread( lFn, CV_LOAD_IMAGE_COLOR );
 	Mat rImg = imread( rFn, CV_LOAD_IMAGE_COLOR );

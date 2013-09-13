@@ -3,6 +3,11 @@
 #include "..\CAMethod.h"
 
 //
+// Re compute cost using ST's implementation
+//
+#define RE_COMPUTE_COST
+
+//
 // Guided Filter for Cost Aggregatation
 //
 class STCA :

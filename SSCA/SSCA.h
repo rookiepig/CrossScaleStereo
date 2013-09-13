@@ -3,7 +3,7 @@
 #include "CCMethod.h"
 #include "CAMethod.h"
 #include "PPMethod.h"
-#define COST_ALPHA 0.8
+#define COST_ALPHA 0.9
 
 //
 // SSCA - Scale Space Cost Aggregation class
