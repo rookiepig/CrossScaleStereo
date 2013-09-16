@@ -3,7 +3,6 @@
 #include "CCMethod.h"
 #include "CAMethod.h"
 #include "PPMethod.h"
-#define COST_ALPHA 0.9
 
 //
 // SSCA - Scale Space Cost Aggregation class
@@ -34,7 +33,8 @@ public:
 	// save cost volume
 	void saveCostVol( const string fn );
 	// add previous pyramid costVol
-	void AddPyrCostVol( SSCA* pre );
+	// default not use pyramid
+	void AddPyrCostVol( SSCA* pre, const double COST_ALPHA = 0 );
 public:
 	//
 	// Constructor & Desctructor

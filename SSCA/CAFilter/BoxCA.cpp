@@ -7,6 +7,7 @@ void BoxCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 	// filtering cost volume
 	for( int d = 1; d < maxDis; d ++ ) {
 		printf( "-c-a" );
-		costVol[ d ] = BoxFilter( costVol[ d ] );
+		// 7 x 7 box filter
+		costVol[ d ] = BoxFilter( costVol[ d ], 3 );
 	}
 }

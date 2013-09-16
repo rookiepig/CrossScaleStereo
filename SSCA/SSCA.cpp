@@ -50,9 +50,9 @@ void SSCA::saveCostVol(const string fn)
 //
 // Add previous cost volume from pyramid
 //
-void SSCA::AddPyrCostVol(SSCA *pre)
+void SSCA::AddPyrCostVol(SSCA *pre, const double COST_ALPHA )
 {
-	printf( "\n\tAdd Pyramid Cost:" );
+	printf( "\n\tAdd Pyramid Cost: COST_ALPHA = %.2lf", COST_ALPHA );
 	for( int d = 1; d < maxDis; d ++ ) {
 		int pD = ( d + 1 ) / 2;
 		printf( ".a.p." );

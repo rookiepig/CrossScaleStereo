@@ -5,7 +5,7 @@
 //
 // Re compute cost using ST's implementation
 //
-#define RE_COMPUTE_COST
+// #define RE_COMPUTE_COST
 
 //
 // Guided Filter for Cost Aggregatation
