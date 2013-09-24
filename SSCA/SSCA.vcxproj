@@ -78,6 +78,7 @@
     <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
     <LibraryPath>$(LIB);$(LibraryPath)</LibraryPath>
     <OutDir>..\..\..\bin\</OutDir>
+    <TargetName>SSCA_NEW</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -162,6 +163,7 @@
     <ClInclude Include="CAST\Toolkit.h" />
     <ClInclude Include="CCMethod.h" />
     <ClInclude Include="CC\CenCC.h" />
+    <ClInclude Include="CC\CGCC.h" />
     <ClInclude Include="CC\GrdCC.h" />
     <ClInclude Include="CommFunc.h" />
     <ClInclude Include="GetMehod.h" />
@@ -187,6 +189,7 @@
     <ClCompile Include="CAST\StereoHelper.cpp" />
     <ClCompile Include="CAST\Toolkit.cpp" />
     <ClCompile Include="CC\CenCC.cpp" />
+    <ClCompile Include="CC\CGCC.cpp" />
     <ClCompile Include="CC\GrdCC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SSCA.cpp" />

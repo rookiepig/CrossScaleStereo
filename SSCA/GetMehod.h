@@ -8,6 +8,7 @@
 #pragma  once
 #include "CC/GrdCC.h"
 #include "CC/CenCC.h"
+#include "CC/CGCC.h"
 #include "CAFilter/GFCA.h"
 #include "CAFilter/BFCA.h"
 #include "CAFilter/BoxCA.h"
@@ -24,6 +25,8 @@ CCMethod* getCCType( const string name )
 		return new CenCC();
 	} else if( name == "BSM" ) {
 		return NULL;
+	} else if ( name == "CG" ) {
+		return new CGCC();
 	}
 }
 

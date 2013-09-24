@@ -108,6 +108,9 @@
     <ClInclude Include="CC\CenCC.h">
       <Filter>CC</Filter>
     </ClInclude>
+    <ClInclude Include="CC\CGCC.h">
+      <Filter>CC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SSCA.cpp">
@@ -171,6 +174,9 @@
       <Filter>CAFilter</Filter>
     </ClCompile>
     <ClCompile Include="CC\CenCC.cpp">
+      <Filter>CC</Filter>
+    </ClCompile>
+    <ClCompile Include="CC\CGCC.cpp">
       <Filter>CC</Filter>
     </ClCompile>
   </ItemGroup>

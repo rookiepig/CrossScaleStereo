@@ -8,6 +8,7 @@
 #define TAU_2 0.00784
 #define ALPHA 0.11
 
+
 //
 // TAD + GRD for Cost Computation
 //
