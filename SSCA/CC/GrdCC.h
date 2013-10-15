@@ -29,5 +29,8 @@ public:
 	~GrdCC(void) {}
 public:
 	void buildCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* costVol );
+#ifdef COMPUTE_RIGHT
+	void buildRightCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* rCostVol );
+#endif
 };
 

@@ -1,4 +1,5 @@
 Thumbs.db
+*.txt
 *.vcxproj.user
 *.opensdf
 *.sdf

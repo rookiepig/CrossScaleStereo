@@ -118,3 +118,9 @@ void CGCC::buildCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* cos
 	delete [] rCode;
 
 }
+#ifdef COMPUTE_RIGHT
+void CGCC::buildRightCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* rCostVol )
+{
+	printf( "!!!!Error!!!! CGCC do not implement right CV\n" );
+}
+#endif

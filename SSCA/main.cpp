@@ -56,6 +56,10 @@ int main( int argc, char** argv )
 	lImg.convertTo( lImg, CV_64F, 1 / 255.0f );
 	rImg.convertTo( rImg, CV_64F,  1 / 255.0f );
 
+	// time
+	double duration;
+	duration = static_cast<double>(getTickCount());
+
 	//
 	// Stereo Match at each pyramid
 	//
@@ -95,8 +99,9 @@ int main( int argc, char** argv )
 	//for( int p = PY_LVL - 2 ; p >= 0; p -- ) {
 	//	smPyr[ p ]->AddPyrCostVol( smPyr[ p + 1 ], costAlpha );
 	//}
+
 	//
-	// Match&Save output
+	// Match + Postprocess
 	//
 	smPyr[ 0 ]->Match();
 	smPyr[ 0 ]->PostProcess( ppMtd );
@@ -119,6 +124,15 @@ int main( int argc, char** argv )
 	//
 	MeanFilter( lDis, lDis, 3 );
 #endif
+	duration = static_cast<double>(getTickCount())-duration;
+	duration /= cv::getTickFrequency(); // the elapsed time in sec
+	printf( "\n--------------------------------------------------------\n" );
+	printf( "Total Time: %.2lf s\n", duration );
+	printf( "--------------------------------------------------------\n" );
+
+	//
+	// Save Output
+	//
 	imwrite( lDisFn, lDis );
 
 	delete [] smPyr;

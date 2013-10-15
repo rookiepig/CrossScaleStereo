@@ -10,12 +10,22 @@ SSCA::SSCA(const Mat l, const Mat r, const int m, const int d)
 	hei = lImg.rows;
 	// init disparity map
 	lDis = Mat::zeros( hei, wid, CV_8UC1 );
-
+#ifdef COMPUTE_RIGHT
+	rDis = Mat::zeros( hei, wid, CV_8UC1 );
+	lSeg = Mat::zeros( hei, wid, CV_8UC3 );
+	lChk = Mat::zeros( hei, wid, CV_8UC1 );
+#endif
 	// init cost volum data
 	costVol = new Mat[ maxDis  ];
 	for( int mIdx = 0; mIdx < maxDis; mIdx ++ ) {
 		costVol[ mIdx ] = Mat::zeros( hei, wid, CV_64FC1 );
 	}
+#ifdef COMPUTE_RIGHT
+	rCostVol = new Mat[ maxDis ];
+	for( int mIdx = 0; mIdx < maxDis; mIdx ++ ) {
+		rCostVol[ mIdx ] = Mat::zeros( hei, wid, CV_64FC1 );
+	}
+#endif
 }
 
 
@@ -23,12 +33,30 @@ SSCA::SSCA(const Mat l, const Mat r, const int m, const int d)
 SSCA::~SSCA(void)
 {
 	delete [] costVol;
+#ifdef COMPUTE_RIGHT
+	delete [] rCostVol;
+#endif
 }
 // get left disparity
 Mat SSCA::getLDis()
 {
 	return lDis;
 }
+#ifdef COMPUTE_RIGHT
+// get right disparity
+Mat SSCA::getRDis()
+{
+	return rDis;
+}
+Mat SSCA::getLSeg()
+{
+	return lSeg;
+}
+Mat SSCA::getLChk()
+{
+	return lChk;
+}
+#endif
 //
 // Save Cost Volume
 //
@@ -68,6 +96,23 @@ void SSCA::AddPyrCostVol(SSCA *pre, const double COST_ALPHA )
 			}
 		}
 	}
+#ifdef COMPUTE_RIGHT
+	for( int d = 1; d < maxDis; d ++ ) {
+		int pD = ( d + 1 ) / 2;
+		printf( "r.a.p." );
+		for( int y = 0; y < hei; y ++ ) {
+			int pY = y / 2;
+			double* cost = rCostVol[ d ].ptr<double>( y );
+			double* pCost = pre->rCostVol[ pD ].ptr<double>( pY );
+			for( int x = 0; x < wid; x ++ ) {
+				int pX = x / 2;
+				cost[ x ] = COST_ALPHA * cost[ x ] +
+					( 1 - COST_ALPHA ) * pCost[ pX ];
+
+			}
+		}
+	}
+#endif
 }
 //
 // 1. Cost Computation
@@ -77,6 +122,9 @@ void SSCA::CostCompute( CCMethod* ccMtd )
 	printf( "\n\tCost Computation:" );
 	if( ccMtd ) {
 		ccMtd->buildCV( lImg, rImg, maxDis, costVol );
+#ifdef COMPUTE_RIGHT
+		ccMtd->buildRightCV( lImg, rImg, maxDis, rCostVol );
+#endif
 	} else {
 		printf( "\n\t\tDo nothing" );
 	}
@@ -90,6 +138,9 @@ void SSCA::CostAggre( CAMethod* caMtd )
 	printf( "\n\tCost Aggregation:" );
 	if( caMtd ) {
 		caMtd->aggreCV( lImg, rImg, maxDis, costVol );
+#ifdef COMPUTE_RIGHT
+		caMtd->aggreCV( rImg, lImg, maxDis, rCostVol );
+#endif
 	} else {
 		printf( "\n\t\tDo nothing" );
 	}
@@ -116,6 +167,23 @@ void SSCA::Match( void )
 			lDisData[ x ] = minDis * disSc;
 		}
 	}
+#ifdef COMPUTE_RIGHT
+	for( int y = 0; y < hei; y ++ ) {
+		uchar* rDisData = ( uchar* ) rDis.ptr<uchar>( y );
+		for( int x = 0; x < wid; x ++ ) {
+			double minCost = DOUBLE_MAX;
+			int    minDis  = 0;
+			for( int d = 1; d < maxDis; d ++ ) {
+				double* costData = ( double* )rCostVol[ d ].ptr<double>( y );
+				if( costData[ x ] < minCost ) {
+					minCost = costData[ x ];
+					minDis  = d;
+				}
+			}
+			rDisData[ x ] = minDis * disSc;
+		}
+	}
+#endif
 }
 //
 // 4. Post Process;
@@ -124,7 +192,7 @@ void SSCA::PostProcess( PPMethod* ppMtd )
 {
 	printf( "\n\tPostProcess:" );
 	if( ppMtd ) {
-
+		ppMtd->postProcess( lImg, rImg, maxDis, disSc, lDis, rDis, lSeg, lChk );
 	} else {
 		printf( "\n\t\tDo nothing" );
 	}
@@ -294,7 +362,11 @@ void SolveAll( SSCA**& smPyr, const int PY_LVL, const double REG_LAMBDA )
 	//		}
 	//	}
 	//}
+	
 
+	//
+	// Left Cost Volume
+	//
 	for( int d = 1; d < smPyr[ 0 ]->maxDis; d ++ ) {
 		// printf( ".s.v." );
 		for( int y = 0; y < hei; y ++ ) {
@@ -320,6 +392,37 @@ void SolveAll( SSCA**& smPyr, const int PY_LVL, const double REG_LAMBDA )
 			}
 		}
 	}
+
+#ifdef COMPUTE_RIGHT
+	//
+	// Right Cost Volume
+	//
+	for( int d = 1; d < smPyr[ 0 ]->maxDis; d ++ ) {
+		// printf( ".s.v." );
+		for( int y = 0; y < hei; y ++ ) {
+			for( int x = 0; x < wid; x ++ ) {
+				int curY = y;
+				int curX = x;
+				int curD = d;
+				double sum = 0;
+				for( int s = 0; s < PY_LVL; s ++ ) {
+					double curCost = smPyr[ s ]->rCostVol[ curD ].at<double>( curY, curX );
+#ifdef _DEBUG
+					if( y == 160 && x == 160 ) {
+						printf( "\ns=%d(%d,%d)\td=%d\tcost=%.4lf", s, curY, curX, curD, curCost );
+					}
+#endif
+					sum += invWgt[ s ] * curCost;
+					curY = curY / 2;
+					curX = curX / 2;
+					curD = ( curD + 1 ) / 2;
+				}
+				smPyr[ 0 ]->rCostVol[ d ].at<double>( y, x ) = sum;
+
+			}
+		}
+	}
+#endif
 	// PrintMat<double>( smPyr[ 0 ]->costVol[ 1 ] );
 	delete [] invWgt;
 }

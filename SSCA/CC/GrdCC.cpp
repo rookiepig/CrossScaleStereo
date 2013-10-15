@@ -80,3 +80,51 @@ void GrdCC::buildCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 		}
 	}
 }
+#ifdef COMPUTE_RIGHT
+void GrdCC::buildRightCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* rCostVol )
+{
+	// for TAD + Grd input image must be CV_64FC3
+	CV_Assert( lImg.type() == CV_64FC3 && rImg.type() == CV_64FC3 );
+
+	int hei = lImg.rows;
+	int wid = lImg.cols;
+	Mat lGray, rGray;
+	Mat lGrdX, rGrdX;
+	Mat tmp;
+	lImg.convertTo( tmp, CV_32F );
+	cvtColor( tmp, lGray, CV_RGB2GRAY );
+	rImg.convertTo( tmp, CV_32F );
+	cvtColor( tmp, rGray, CV_RGB2GRAY );
+	// X Gradient
+	// sobel size must be 1
+	Sobel( lGray, lGrdX, CV_64F, 1, 0, 1 );
+	Sobel( rGray, rGrdX, CV_64F, 1, 0, 1 );
+	lGrdX += 0.5;
+	rGrdX += 0.5;
+	// build cost volume! start from 1
+	// try 0
+	for( int d = 0; d < maxDis; d ++ ) {
+		printf( "-r-c-c-" );
+		for( int y = 0; y < hei; y ++ ) {
+			double* lData = ( double* ) lImg.ptr<double>( y );
+			double* rData = ( double* ) rImg.ptr<double>( y );
+			double* lGData = ( double* ) lGrdX.ptr<double>( y );
+			double* rGData = ( double* ) rGrdX.ptr<double>( y );
+			double* cost   = ( double* ) rCostVol[ d  ].ptr<double>( y );
+			for( int x = 0; x < wid; x ++ ) {
+				if( x + d < wid ) {
+					double* rC = rData + 3 * x;
+					double* lC = lData + 3 * ( x + d );
+					double* rG = rGData + x;
+					double* lG = lGData + x + d;
+					cost[ x ] = myCostGrd( lC, rC, lG, rG );
+				} else {
+					double* rC = rData + 3 * x;
+					double* rG = rGData + x;
+					cost[ x ] = myCostGrd( rC, rG );
+				}
+			}
+		}
+	}
+}
+#endif

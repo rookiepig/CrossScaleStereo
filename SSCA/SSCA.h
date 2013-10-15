@@ -21,15 +21,28 @@ public:
 	// Disparity Image
 	//
 	Mat lDis;
+#ifdef COMPUTE_RIGHT
+	Mat rDis;
+	Mat lSeg;
+	Mat lChk;
+#endif
 	int maxDis;
 	int disSc;
 	//
 	// Cost Volume
 	//
 	Mat* costVol;
+#ifdef COMPUTE_RIGHT
+	Mat* rCostVol;
+#endif
 public:
 	// get left disparity
 	Mat getLDis( void );
+#ifdef COMPUTE_RIGHT
+	Mat getRDis( void );
+	Mat getLSeg( void );
+	Mat getLChk( void );
+#endif
 	// save cost volume
 	void saveCostVol( const string fn );
 
