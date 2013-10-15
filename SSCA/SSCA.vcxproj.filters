@@ -25,6 +25,12 @@
     <Filter Include="CC">
       <UniqueIdentifier>{81e2353c-9132-4f82-81b1-f79466ff4ad8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PPWM">
+      <UniqueIdentifier>{8e1f6eee-eca3-4f02-8df7-3bb3248897d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PPSG">
+      <UniqueIdentifier>{486cf6b8-9d46-4f1b-a50e-277e4d78c363}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SSCA.h">
@@ -111,6 +117,42 @@
     <ClInclude Include="CC\CGCC.h">
       <Filter>CC</Filter>
     </ClInclude>
+    <ClInclude Include="PPWM\WMPP.h">
+      <Filter>PPWM</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\convolve.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\disjoint-set.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\filter.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\image.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\imconv.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\imutil.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\misc.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\pnmfile.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\segment-graph.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\segment-image.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
+    <ClInclude Include="PPSG\SGPP.h">
+      <Filter>PPSG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SSCA.cpp">
@@ -178,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="CC\CGCC.cpp">
       <Filter>CC</Filter>
+    </ClCompile>
+    <ClCompile Include="PPWM\WMPP.cpp">
+      <Filter>PPWM</Filter>
+    </ClCompile>
+    <ClCompile Include="PPSG\SGPP.cpp">
+      <Filter>PPSG</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

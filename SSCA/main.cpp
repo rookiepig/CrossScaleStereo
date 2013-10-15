@@ -86,15 +86,33 @@ int main( int argc, char** argv )
 		pyrDown( rP, rP );
 	}
 	printf( "\n--------------------------------------------------------\n" );
-	for( int p = PY_LVL - 2 ; p >= 0; p -- ) {
-		smPyr[ p ]->AddPyrCostVol( smPyr[ p + 1 ], costAlpha );
-	}
+	printf( "\n Cost Aggregation in Scale Space\n" );
+	printf( "\n--------------------------------------------------------\n" );
+	// new method
+	SolveAll( smPyr, PY_LVL, costAlpha );
+
+	// old method
+	//for( int p = PY_LVL - 2 ; p >= 0; p -- ) {
+	//	smPyr[ p ]->AddPyrCostVol( smPyr[ p + 1 ], costAlpha );
+	//}
 	//
 	// Match&Save output
 	//
 	smPyr[ 0 ]->Match();
 	smPyr[ 0 ]->PostProcess( ppMtd );
 	Mat lDis = smPyr[ 0 ]->getLDis();
+
+#ifdef _DEBUG
+	for( int s = 0; s < PY_LVL; s ++ ) {
+		smPyr[ s ]->Match();
+		Mat sDis = smPyr[ s ]->getLDis();
+		ostringstream sStr;
+		sStr << s;
+		string sFn = sStr.str( ) + "_ld.png";
+		imwrite( sFn, sDis );
+	}
+	saveOnePixCost( smPyr, PY_LVL );
+#endif
 #ifdef USE_MEDIAN_FILTER
 	//
 	// Median Filter Output

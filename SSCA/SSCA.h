@@ -32,6 +32,7 @@ public:
 	Mat getLDis( void );
 	// save cost volume
 	void saveCostVol( const string fn );
+
 	// add previous pyramid costVol
 	// default not use pyramid
 	void AddPyrCostVol( SSCA* pre, const double COST_ALPHA = 0 );
@@ -59,3 +60,8 @@ public:
 	void PostProcess( PPMethod* ppMtd = NULL );
 };
 
+// global function to solve all cost volume
+void SolveAll( SSCA**& smPyr, const int PY_LVL, const double REG_LAMBDA );
+#ifdef _DEBUG
+void saveOnePixCost( SSCA**& smPyr, const int PY_LVL );
+#endif

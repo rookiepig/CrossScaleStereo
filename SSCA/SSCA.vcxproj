@@ -78,7 +78,7 @@
     <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
     <LibraryPath>$(LIB);$(LibraryPath)</LibraryPath>
     <OutDir>..\..\..\bin\</OutDir>
-    <TargetName>SSCA_NEW</TargetName>
+    <TargetName>SSCA_FINAL</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -168,6 +168,18 @@
     <ClInclude Include="CommFunc.h" />
     <ClInclude Include="GetMehod.h" />
     <ClInclude Include="PPMethod.h" />
+    <ClInclude Include="PPSG\convolve.h" />
+    <ClInclude Include="PPSG\disjoint-set.h" />
+    <ClInclude Include="PPSG\filter.h" />
+    <ClInclude Include="PPSG\image.h" />
+    <ClInclude Include="PPSG\imconv.h" />
+    <ClInclude Include="PPSG\imutil.h" />
+    <ClInclude Include="PPSG\misc.h" />
+    <ClInclude Include="PPSG\pnmfile.h" />
+    <ClInclude Include="PPSG\segment-graph.h" />
+    <ClInclude Include="PPSG\segment-image.h" />
+    <ClInclude Include="PPSG\SGPP.h" />
+    <ClInclude Include="PPWM\WMPP.h" />
     <ClInclude Include="SSCA.h" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +204,8 @@
     <ClCompile Include="CC\CGCC.cpp" />
     <ClCompile Include="CC\GrdCC.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PPSG\SGPP.cpp" />
+    <ClCompile Include="PPWM\WMPP.cpp" />
     <ClCompile Include="SSCA.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

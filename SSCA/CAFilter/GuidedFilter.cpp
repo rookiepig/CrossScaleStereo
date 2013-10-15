@@ -258,7 +258,7 @@ Mat GuidedFilter( const Mat& I, const Mat& p, const int r, const float eps )
 #ifdef _DEBUG
 		duration = static_cast<double>(cv::getTickCount())-duration;
 		duration /= cv::getTickFrequency(); // the elapsed time in sec
-		printf( "Inter Time: %lf s\n", duration );
+		// printf( "Inter Time: %lf s\n", duration );
 #endif
 		Mat b = mean_p.clone();
 		for( int c = 0; c < 3; c ++ ) {

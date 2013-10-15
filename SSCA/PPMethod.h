@@ -22,7 +22,7 @@ public:
 	// Mat& lDis - output new left disparity
 	// Mat& rDis - output new right disparity
 	///////////////////////////////////////////////////////
-	virtual void postProcess( const Mat& lImg, const Mat& rImg, const int disSc,
-		Mat& lDis, Mat& rDis ) = 0;
+	virtual void postProcess( const Mat& lImg, const Mat& rImg, const int maxDis, const int disSc,
+		Mat& lDis, Mat& rDis, Mat& lSeg, Mat& lChk ) = 0;
 };
 

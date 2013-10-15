@@ -14,7 +14,8 @@
 #include "CAFilter/BoxCA.h"
 #include "CANLC/NLCCA.h"
 #include "CAST/STCA.h"
-
+#include "PPWM/WMPP.h"
+#include "PPSG/SGPP.h"
 
 // get cost compuation method name
 CCMethod* getCCType( const string name ) 
@@ -48,10 +49,10 @@ CAMethod* getCAType( const string name )
 // get cost compuation method name
 PPMethod* getPPType( const string name ) 
 {
-	if( name == "MED" ) {
-		return NULL;
-	} else if( name == "PGF" ) {
-		return NULL;
+	if( name == "SG" ) {
+		return new SGPP();
+	} else if( name == "WM" ) {
+		return new WMPP();
 	} else if( name == "NP" ) {
 		return NULL;
 	}

@@ -9,6 +9,12 @@
 #define ALPHA 0.11
 
 
+//#define BORDER_THRES 0.023
+//
+//#define TAU_1 0.05
+//#define TAU_2 0.02
+//#define ALPHA 0.11
+
 //
 // TAD + GRD for Cost Computation
 //

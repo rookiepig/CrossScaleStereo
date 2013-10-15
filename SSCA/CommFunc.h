@@ -58,3 +58,19 @@ using namespace cv;
 #pragma comment( lib, "opencv_video246.lib" )
 #pragma comment( lib, "opencv_videostab246.lib" )
 #endif
+
+// output matrix
+template<class T>
+void PrintMat( const Mat& mat )
+{
+	int rows = mat.rows;
+	int cols = mat.cols;
+	printf( "\n%d x %d Matrix\n", rows, cols );
+	for( int r = 0; r < rows; r ++ ) {
+		for( int c = 0; c < cols; c ++  ) {
+			cout << mat.at<T>( r, c ) << "\t";
+		}
+		printf( "\n" );
+	}
+	printf( "\n" );
+}
