@@ -20,7 +20,7 @@ namespace WMPP_FUNC{
 				int rLoc = ( x - lDep + wid ) % wid;
 				int rDep = rDisData[ rLoc ] / disSc;
 				// disparity should not be zero
-				if( lDep == rDep && lDep != 0 ) {
+				if( lDep == rDep && lDep >= 2 ) {
 					*pLValid = 1;
 				}
 				// check right image
@@ -29,7 +29,7 @@ namespace WMPP_FUNC{
 				int lLoc = ( x + rDep + wid ) % wid;
 				lDep = lDisData[ lLoc ] / disSc;
 				// disparity should not be zero
-				if( rDep == lDep && rDep != 0 ) {
+				if( rDep == lDep && rDep >= 2 ) {
 					*pRValid = 1;
 				}
 				pLValid ++;
@@ -290,16 +290,15 @@ void WMPP::postProcess( const Mat& lImg, const Mat& rImg, const int maxDis, cons
 	int* rValid = new int[ imgSize ];
 	
 	// iter 3 times
-	// for( int i = 0; i < 3; i ++ ) {
+    for( int i = 0; i < 3; i ++ ) {
 		// save check results
 		WMPP_FUNC::lrCheck( lDis, rDis, lValid, rValid, disSc );
-		WMPP_FUNC::saveChk( hei, wid, lValid, rValid );
 		WMPP_FUNC::fillInv( lDis, rDis, lValid, rValid );
 		WMPP_FUNC::wgtMedian( lTmp, rTmp, lDis, rDis, lValid, rValid, maxDis, disSc );
-		// see last check results
-		WMPP_FUNC::lrCheck( lDis, rDis, lValid, rValid, disSc );
-		WMPP_FUNC::saveChk( hei, wid, lValid, rValid );
-	// }
+	}
+	// see last check results
+	WMPP_FUNC::lrCheck( lDis, rDis, lValid, rValid, disSc );
+	WMPP_FUNC::saveChk( hei, wid, lValid, rValid );
 	delete [] lValid;
 	delete [] rValid;
 }

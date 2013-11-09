@@ -7,6 +7,14 @@
 #define LAMBDA_CEN 0.5
 #define GRD_BOUND  0.1
 
+
+
+#define CG_BORDER_THRES 1.0
+#define CG_TAU_1 1.0
+#define CG_TAU_2 0
+#define CG_ALPHA 1.0
+
+
 //
 // Cencus + Gradient Cost
 //

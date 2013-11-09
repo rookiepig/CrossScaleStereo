@@ -40,7 +40,7 @@ CAMethod* getCAType( const string name )
 		return new BFCA();
 	} else if( name == "BOX" ) {
 		return new BoxCA();
-	} else if( name == "NLC" ) {
+	} else if( name == "NL" ) {
 		return new NLCCA();
 	} else if ( name == "ST" ) {
 		return new STCA();

@@ -33,6 +33,30 @@ inline double myCostGrd( double* lC, double* lG )
 	grdDiff = grdDiff > TAU_2 ? TAU_2 : grdDiff;
 	return ALPHA * clrDiff + ( 1 - ALPHA ) * grdDiff;
 }
+// compute gradient by your code! not opencv!
+void myComputeGradient( const Mat& grayImg, Mat& grd )
+{
+	int m_h = grayImg.rows;
+	int m_w = grayImg.cols;
+	grd = Mat::zeros( m_h, m_w, CV_64FC1 );
+	float gray,gray_minus,gray_plus;
+	for( int y= 0; y < m_h; y++ )
+	{
+		float* grayData = ( float* ) grayImg.ptr<float>( y );
+		double* grdData  = ( double* ) grd.ptr<double>( y );
+		gray_minus= grayData[ 0 ];
+		gray = gray_plus= grayData[ 1 ];
+	    grdData[ 0 ] = gray_plus - gray_minus + 0.5;
+		for(int x = 1; x < m_w - 1; x ++ )
+		{
+			gray_plus = grayData[ x + 1 ];
+			grdData[ x ] = 0.5 * ( gray_plus-gray_minus ) + 0.5;
+			gray_minus = gray;
+			gray = gray_plus;
+		}
+		grdData[ m_w - 1 ] = gray_plus - gray_minus + 0.5;
+	}
+}
 void GrdCC::buildCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* costVol )
 {
 	// for TAD + Grd input image must be CV_64FC3
@@ -53,6 +77,11 @@ void GrdCC::buildCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 	Sobel( rGray, rGrdX, CV_64F, 1, 0, 1 );
 	lGrdX += 0.5;
 	rGrdX += 0.5;
+
+	// try your own gradient
+	//myComputeGradient( lGray, lGrdX );
+	//myComputeGradient( rGray, rGrdX );
+
 	// build cost volume! start from 1
 	// try 0
 	for( int d = 0; d < maxDis; d ++ ) {

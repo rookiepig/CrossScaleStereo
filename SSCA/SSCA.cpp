@@ -62,16 +62,24 @@ Mat SSCA::getLChk()
 //
 void SSCA::saveCostVol(const string fn)
 {
+	int myY = 53;
+	int startX = 285;
+	int endX   = 424;
+
 	// save as matlab order
 	FILE* fp = fopen( fn.c_str(), "w" );
+
 	for( int d = 1; d < maxDis; d ++ ) {
 		printf( "-s-v-" );
 		for( int x = 0; x < wid; x ++ ) {
 			for( int y = 0; y < hei; y ++ ) {
-				double* cost = costVol[ d ].ptr<double>( y );
-				fprintf( fp, "%lf\n", cost[ x ] );
+				if( y == myY && x >= startX && x <= endX ) {
+					double* cost = costVol[ d ].ptr<double>( y );
+					fprintf( fp, "%lf  ", cost[ x ] );
+				}
 			}
 		}
+		fprintf( fp, "\n" );
 	}
 	fclose( fp );
 }
@@ -192,7 +200,9 @@ void SSCA::PostProcess( PPMethod* ppMtd )
 {
 	printf( "\n\tPostProcess:" );
 	if( ppMtd ) {
+#ifdef COMPUTE_RIGHT
 		ppMtd->postProcess( lImg, rImg, maxDis, disSc, lDis, rDis, lSeg, lChk );
+#endif
 	} else {
 		printf( "\n\t\tDo nothing" );
 	}

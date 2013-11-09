@@ -12,7 +12,7 @@
 #include <bitset>
 using namespace std;
 using namespace cv;
-#define USE_CENCUS
+//#define USE_CENCUS
 #define CENCUS_WND 9
 #define CENCUS_BIT 80
 

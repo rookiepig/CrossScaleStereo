@@ -26,9 +26,11 @@ void cvtMatQX( const Mat& img, unsigned char* qxImg )
 void NLCCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* costVol )
 {
 	printf( "\n\t\tNon-local cost aggregation" );
-	printf( "\n\t\tCost volume need to be recompute" );
 	// construct non-local aggregation class
-	double sigma= 0.1;
+
+	// default is 0.1
+	double sigma= 0.1; // book arrival try
+
 	int h = lImg.rows;
 	int w = lImg.cols;
 	// init nlca
@@ -43,6 +45,7 @@ void NLCCA::aggreCV( const Mat& lImg, const Mat& rImg, const int maxDis, Mat* co
 	m_nlca.m_right = right;
 #ifdef RE_COMPUTE_COST
 	// recompute cost volume
+	printf( "\n\t\tCost volume need to be recompute" );
 	 m_nlca.matching_cost_from_color_and_gradient( left, right );
 #else
 	//// my cost volume -> nlca
