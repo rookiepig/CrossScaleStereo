@@ -3,7 +3,7 @@ Cross-Scale Cost Aggregation for Stereo Matching (CVPR 2014)
 
 ## Compilation
 ### Windows
-The code is a Visual Studio 2010 project with Windows x64 platform. To build the project, you need to configure [OpenCV](http://opencv.org/) (version 2.4.6, however, other versions are ok by modifying CommonFunc.h).
+The code is a Visual Studio 2010 project on Windows x64 platform. To build the project, you need to configure [OpenCV](http://opencv.org/) on your own PC. (version 2.4.6, however, other versions are acceptable by modifying [CommFunc.h](/SSCA/CommFunc.h)).
 ### Other Platforms
 The code requires no platform-dependent libraries. Thus, it is easy to compile it on other platforms with OpenCV.
 
@@ -30,7 +30,7 @@ Run the program with the following paramters:
 - `[maxDis]` -- maximum disparity range, e.g. `60` for Middlebury and `256` for KITTI dataets.
 - `[disSc]` -- scale disparity, e.g. `4` for Middlebury and `1` for KITTI datasets.
 
-*Hint*: to enable post-processing, you must uncomment `// #define COMPUTE_RIGHT` in `CommFunc.h` to allow computing right disparity map.
+**Hint**: to enable post-processing, you must uncomment `// #define COMPUTE_RIGHT` in [CommFunc.h](/SSCA/CommFunc.h) to allow computing right disparity map.
 
 ## Citation
 Citation is very important for researchers. If you find this code useful, please cite:
