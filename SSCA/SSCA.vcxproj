@@ -78,7 +78,7 @@
     <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
     <LibraryPath>$(LIB);$(LibraryPath)</LibraryPath>
     <OutDir>..\..\..\bin\</OutDir>
-    <TargetName>SSCA_FINAL</TargetName>
+    <TargetName>SSCA</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

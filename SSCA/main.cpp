@@ -288,9 +288,9 @@ int main( int argc, char** argv )
 }
 
 
-//
+
 // for test time
-//
+
 //int main( int argc, char** argv )
 //{
 //	printf( "Scale Space Cost Aggregation\n" );
@@ -414,7 +414,7 @@ int main( int argc, char** argv )
 //	delete ppMtd;
 //	return 0;
 //}
-
+//
 
 #endif
 //

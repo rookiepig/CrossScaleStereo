@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////
 #pragma  once
 #define DOUBLE_MAX 1e10
-#define COMPUTE_RIGHT
+// #define COMPUTE_RIGHT
 
 #include<opencv2/opencv.hpp>
 #include<string>
