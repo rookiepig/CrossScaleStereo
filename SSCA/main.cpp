@@ -136,14 +136,14 @@ int main( int argc, char** argv )
 	// Save Output
 	//
 	imwrite( lDisFn, lDis );
-	imwrite( rDisFn, rDis );
-
-        //delete [] smPyr;
+	imwrite( rDisFn, rDis );       
 	
 	for (int p = 0; p < PY_LVL; p++)   //fix a bug of memory leak
 	{
 		delete smPyr[p];
 	}
+	
+	delete [] smPyr;
 	
 	delete ccMtd;
 	delete caMtd;
@@ -285,12 +285,13 @@ int main( int argc, char** argv )
 
 	//smPyr[ 0 ]->saveCostVol( costFn.c_str() );
 
-        //delete [] smPyr;
 	
 	for (int p = 0; p < PY_LVL; p++)   //fix a bug of memory leak
 	{
 		delete smPyr[p];
 	}
+	
+	delete [] smPyr;
 	
 	delete ccMtd;
 	delete caMtd;
